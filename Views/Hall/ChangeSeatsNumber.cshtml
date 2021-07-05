@@ -1,0 +1,50 @@
+﻿@model CinemaPlanet.ViewModel.HallViewModel
+@using CinemaPlanet.Models
+
+@{
+    ViewBag.Title = "ChangeSeatsNumber";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ChangeSeatsNumber</title>
+</head>
+<body>
+    <div class="form-group">
+        <form action="ChangeSeatsNumber" method="post">
+            Enter hall name to update: <input id="Text1" name="txtHallName" type="text" class="form-control" />
+            <br />
+            Enter seats number: <input id="SeatsNumber" name="HallSeatsNumber" type="text" class="form-control" />
+            <br />
+            <input id="Submit2" type="submit" value="Update price" class="btn-group" />
+        </form>
+
+    </div>
+
+    <table class=" table">
+        <tr>
+            <th>ID</th>
+            <th>Hall Name</th>
+            <th>Seats Number</th>
+
+
+        </tr>
+
+        @foreach (Hall Hall in Model.Halls)
+        {
+            <tr>
+                <td>@Hall.ID</td>
+                <td>@Hall.HallName</td>
+                <td>@Hall.SeatsNumber</td>
+
+
+
+            </tr>
+        }
+    </table>
+</body>
+</html>

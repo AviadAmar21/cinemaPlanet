@@ -1,0 +1,188 @@
+﻿@model CinemaPlanet.ViewModel.MovieGallery
+@using CinemaPlanet.Models
+
+
+
+
+
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+
+
+        @{
+            if (ViewBag.Flag == 1)
+            {
+
+                if (ViewBag.ErrorMsg == null)
+                {
+
+                    <div class="form-group">
+                        <form action="EnterDate" method="post">
+                            Enter movie date: <input id="Text1" name="txtDate" type="text" class=" form-control" />
+                            <br />
+                            <input id="Submit1" type="submit" value="Search movie" class=" btn-group" />
+                            <br />
+                        </form>
+                    </div>
+
+                }
+
+                else
+                {
+
+                    <label class=" label-info">@ViewBag.ErrorMsg </label>
+
+                }
+
+
+            }
+
+            else if (ViewBag.Flag == 2)
+            {
+                if (ViewBag.ErrorMsg == null)
+
+                {
+
+                    <div class="form-group">
+                        <form action="EnterTime" method="post">
+                            Enter movie time: <input id="Text1" name="txtTime" type="text" class=" form-control" />
+                            <br />
+                            <input id="Submit2" type="submit" value="Search movie" class=" btn-group" />
+                            <br />
+                        </form>
+                    </div>
+                }
+
+                else
+                {
+
+                    <label class=" label-info">@ViewBag.ErrorMsg </label>
+
+                }
+
+            }
+
+            else if (ViewBag.Flag == 3)
+            {
+
+
+
+                <div class="form-group">
+                    <form action="PriceRange" method="post">
+                        Price from: <input type="number" id="StartPrice" name="price1" class=" form-control">
+                        to: <input type="number" id="toPrice" name="price2" class=" form-control">
+                        <br />
+                        <input id="Submit3" type="submit" value="Submit" class=" btn-group" />
+                    </form>
+                </div>
+
+
+
+
+
+            }
+
+            if (ViewBag.Flag == 4)
+            {
+                if (ViewBag.ErrorMsg == null)
+                {
+
+                    <div class="form-group">
+                        <form action="EnterCategory" method="post">
+                            Enter movie date: <input id="Text2" name="txtCategory" type="text" class=" form-control" />
+                            <br />
+                            <input id="Submit4" type="submit" value="Search movie" class=" btn-group" />
+                            <br />
+                        </form>
+                    </div>
+                }
+
+                else
+                {
+
+                    <label class=" label-info">@ViewBag.ErrorMsg </label>
+
+                }
+
+
+            }
+
+        }
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-info">Sort by</button>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop3" type="button" class="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop3" style="">
+                    <a class="dropdown-item-text" href="/Movie/SortByMaxPrice">Max Price</a>
+                    <a class="dropdown-item-text" href="/Movie/SortByMinPrice">Min Price</a>
+                    <a class="dropdown-item-text" href="/Movie/SortByCategory">Category</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-info">Search by</button>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop3" type="button" class="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop3" style="">
+                    <a class="dropdown-item" href="/Movie/EnterDate">Date</a>
+                    <a class="dropdown-item" href="/Movie/EnterTime">Time</a>
+                    <a class="dropdown-item" href="/Movie/PriceRange">Price Range</a>
+                    <a class="dropdown-item" href="/Movie/EnterCategory">Category</a>
+
+
+                </div>
+            </div>
+        </div>
+
+        <table class=" table">
+            <tr>
+                <th>Movie name</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Hall Name</th>
+                <th>Age</th>
+
+            </tr>
+
+            @foreach (Movie Movie in Model.Movies)
+            {
+            <tr>
+
+                <td>@Movie.mName</td>
+                <td>@Movie.mDate</td>
+                <td>@Movie.Category</td>.,
+                <td>@Movie.Price</td>
+                <td>@Movie.HallName</td>
+                <td>@Movie.Age</td>
+                <td>
+                    <a href="http://google.com">
+                        <div style="height:100%;width:100%">
+                            Buy Ticket
+                        </div>
+                    </a>
+                </td>
+
+            </tr>
+            }
+    
+
+        </table>
+    </div>
+</body>
+</html>
+

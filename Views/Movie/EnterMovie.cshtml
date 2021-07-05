@@ -1,0 +1,74 @@
+﻿@model CinemaPlanet.ViewModel.MovieViewModel
+@using CinemaPlanet.Models
+
+@{
+    ViewBag.Title = "EnterMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EnterMovie</title>
+</head>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<body>
+    <div>
+        @using (Html.BeginForm("Submit", "Movie", FormMethod.Post))
+        {
+
+            <b>ID: </b> @Html.TextBoxFor(x => x.Movie.ID, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.ID)
+            <br />
+            <b>Movie name: </b> @Html.TextBoxFor(x => x.Movie.mName, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.mName)
+            <br />
+            <b>Date: </b> @Html.TextBoxFor(x => x.Movie.mDate, "{0:yy/mm/dd}", new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.mDate)
+            <br />
+            <b>Price: </b> @Html.TextBoxFor(x => x.Movie.Price, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.Price)
+            <br />
+            <b>Hall name: </b> @Html.TextBoxFor(x => x.Movie.HallName, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.HallName)
+            <br />
+            <b>Age (minimum): </b> @Html.TextBoxFor(x => x.Movie.Age, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Movie.Age)
+            <br />
+            <b>Category: </b> @Html.DropDownListFor(x => x.Movie.Category, new SelectList(Enum.GetValues(typeof(Categories))),"Select Catgeory" , new { @class = "form-control" })
+            <br/>
+            <input id="Submit1" type="submit" value="Submit" class="btn-group" />
+            <br />
+
+        }
+
+
+        <table class=" table">
+            <tr>
+                <th>Movie name</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Hall Name</th>
+                <th>Age</th>
+
+            </tr>
+
+            @foreach (Movie Movie in Model.Movies)
+            {
+                <tr>
+                    <td>@Movie.mName</td>
+                    <td>@Movie.mDate</td>
+                    <td>@Movie.Category</td>
+                    <td>@Movie.Price</td>
+                    <td>@Movie.HallName</td>
+                    <td>@Movie.Age</td>
+
+
+                </tr>
+            }
+        </table>
+
+    </div>
+</body>
+</html>

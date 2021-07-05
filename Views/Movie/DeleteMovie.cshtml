@@ -1,0 +1,52 @@
+﻿@model CinemaPlanet.ViewModel.MovieViewModel
+@using CinemaPlanet.Models
+
+@{
+    ViewBag.Title = "DeleteMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteMovie</title>
+</head>
+<body>
+    <div class="form-group">
+        <form action="DeleteMovie" method="post">
+            Enter movie name to delete: <input id="Text1" name="txtMovieName" type="text" class=" form-control" />
+            <br />
+            <input id="Submit1" type="submit" value="Delete movie" class=" btn-group" />
+            <br />
+        </form>
+    </div>
+    <table class=" table">
+        <tr>
+            <th>Movie name</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Hall Name</th>
+            <th>Age</th>
+
+        </tr>
+
+        @foreach (Movie Movie in Model.Movies)
+        {
+            <tr>
+                <td>@Movie.mName</td>
+                <td>@Movie.mDate</td>
+                <td>@Movie.Category</td>
+                <td>@Movie.Price</td>
+                <td>@Movie.HallName</td>
+                <td>@Movie.Age</td>
+
+
+            </tr>
+        }
+    </table>
+</body>
+</html>

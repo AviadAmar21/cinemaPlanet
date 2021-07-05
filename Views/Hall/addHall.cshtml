@@ -1,0 +1,59 @@
+﻿@model CinemaPlanet.ViewModel.HallViewModel
+@using CinemaPlanet.Models
+
+@{
+    ViewBag.Title = "AddHall";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddHall</title>
+</head>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<body>
+    @using (Html.BeginForm("SubmitHall", "Hall", FormMethod.Post))
+    {
+        <b>ID: </b> @Html.TextBoxFor(x => x.Hall.ID, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Hall.ID)
+        <br />
+        <b>Hall Name: </b> @Html.TextBoxFor(x => x.Hall.HallName, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Hall.HallName)
+        <br />
+        <b>Seats Number: </b> @Html.TextBoxFor(x => x.Hall.SeatsNumber, new { @class = "form-control" }) @Html.ValidationMessageFor(x => x.Hall.SeatsNumber)
+        <br />
+        <input id="Submit1" type="submit" value="Add Hall" class="btn-group" />
+        <br />
+    }
+
+    <table class=" table">
+        <tr>
+            <th>ID</th>
+            <th>Hall Name</th>
+            <th>Seats Number</th>
+           
+
+        </tr>
+
+        @foreach (Hall Hall in Model.Halls)
+        {
+            <tr>
+                <td>@Hall.ID</td>
+                <td>@Hall.HallName</td>
+                <td>@Hall.SeatsNumber</td>
+                
+
+
+            </tr>
+        }
+    </table>
+
+    <div>
+    </div>
+</body>
+</html>
